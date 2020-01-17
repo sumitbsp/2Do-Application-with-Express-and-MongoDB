@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo App</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- container for all the elements -->
+    <div class="container">
+        <h1>2Do App</h1>
+        <form action="/create-todo" method="POST" id="create-todo">
+            <div class="description">
+                <label for="description">DESCRIPTION</label>
+                <input id="description" name="description" type="text" placeholder="Ener Description">
+            </div>
+
+            <!-- div containing category date and priority inputs -->
+            <div class="category-date-priority">
+                <div class="category">
+                    <label for="category">CATEGORY</label>
+                    <select name="category" id="category">
+                        <option value="" selected disabled>Choose a category</option>
+                        <option value="Work" class="work-color">WORK</option>
+                        <option value="School" class="school-color">SCHOOL</option>
+                        <option value="Personal" class="personal-color">PERSONAL</option>
+                    </select>
+                </div>
+
+                <div class="date">
+                    <label for="date">DUE DATE</label>
+                    <input name="date" type="date" id="date">
+                </div>
+                
+                <div class="priority">
+                    <label for="priority"> PRIORITY</label>
+                    <select name="priority" id="priority">
+                        <option value="Normal" selected>NORMAL</option>
+                        <option value="High">HIGH</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+       
+        <div class="buttons">
+             <!-- buttons to add todo -->
+            <button type="submit" class="add-task" form="create-todo">
+                <div class="btn-div">
+                <i class="fas fa-plus"></i>
+                <p> Add Task</p>
+            </div>
+            </button>
+            <!-- button to delete todo -->
+            <button type="submit" class="delete-btn" form="delete-todo">
+                <div class="btn-div">
+                    <i class="far fa-trash-alt"></i>
+                    <p>Delete</p>
+                </div>
+            </button>
+        </div>
+            
+        
+        <form action="/delete-todo" method="POST" id="delete-todo">
+            <div class="todo-display">
+                <label for="show-todo">TODOS TO DISPLAY</label>
+                <select name="" id="show-todo">
+                    <option value="showall" selected>Show all</option>
+                    <option value="work">Work</option>
+                    <option value="school">School</option>
+                    <option value="personal">Personal</option>
+                </select>
+            </div>
+           
+
+            <!-- todo list div -->
+            <div class="todo-list">
+                <!-- looping over the todo_list for dynamically render todos -->
+                
+                <% for (let i of todo_list) { %> 
+                    <div class="todo-container <%= i.category%>">
+                        <input class="checkbox" type="checkbox" name="checkbox[]" value="<%= i._id %>">
+                        <div class="todo-info">
+                            <p><%= i.description %></p>
+                            <p> <i class="far fa-calendar-alt"></i> &nbsp; &nbsp; <%= i.date %></p>
+                        </div>
+                        <div class="category-display">
+                            <p class="todo-category"><%= i.category %></p>
+                        </div>
+                        <div class="priority-display">
+                            <p class="todo-priority"><%= i.priority%></p>
+                        </div>
+                    </div>
+                <%}%>
+        </form>
+    </div>
+
+    <!-- javascript -->
+    <script src="js/home.js"></script>
+</body>
+</html>
