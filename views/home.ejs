@@ -12,7 +12,12 @@
 <body>
     <!-- container for all the elements -->
     <div class="container">
-        <h1>2Do App</h1>
+        <h1>A 2Do App</h1>
+        <div class="user-info">
+            <p>Hello, <%= user.name %></p>
+            <button><a href="/update-profile">Update Profile</a></button>
+            <button><a href="/log-out">Log-Out</a></button>
+        </div>
         <form action="/create-todo" method="POST" id="create-todo">
             <div class="description">
                 <label for="description">DESCRIPTION</label>
@@ -43,28 +48,20 @@
                         <option value="High">HIGH</option>
                     </select>
                 </div>
+
+                <div>
+                    <button type="submit" class="add-task" form="create-todo">
+                        <div class="btn-div">
+                            <i class="fas fa-plus"></i>
+                            <p> Add Task</p>
+                        </div>
+                    </button>
+                </div>
             </div>
         </form>
-       
-        <div class="buttons">
-             <!-- buttons to add todo -->
-            <button type="submit" class="add-task" form="create-todo">
-                <div class="btn-div">
-                <i class="fas fa-plus"></i>
-                <p> Add Task</p>
-            </div>
-            </button>
-            <!-- button to delete todo -->
-            <button type="submit" class="delete-btn" form="delete-todo">
-                <div class="btn-div">
-                    <i class="far fa-trash-alt"></i>
-                    <p>Delete</p>
-                </div>
-            </button>
-        </div>
             
         
-        <form action="/delete-todo" method="POST" id="delete-todo">
+        <div class="todos-container">
             <div class="todo-display">
                 <label for="show-todo">TODOS TO DISPLAY</label>
                 <select name="" id="show-todo">
@@ -82,7 +79,7 @@
                 
                 <% for (let i of todo_list) { %> 
                     <div class="todo-container <%= i.category%>">
-                        <input class="checkbox" type="checkbox" name="checkbox[]" value="<%= i._id %>">
+                        
                         <div class="todo-info">
                             <p><%= i.description %></p>
                             <p> <i class="far fa-calendar-alt"></i> &nbsp; &nbsp; <%= i.date %></p>
@@ -93,12 +90,14 @@
                         <div class="priority-display">
                             <p class="todo-priority"><%= i.priority%></p>
                         </div>
+                        <a href="/delete-todo/<%= i._id %>"><i class="fas fa-trash"></i></a>
                     </div>
                 <%}%>
-        </form>
+            </div>
     </div>
 
     <!-- javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/fontawesome.min.js"></script>
     <script src="js/home.js"></script>
 </body>
 </html>

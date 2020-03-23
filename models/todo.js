@@ -1,25 +1,27 @@
-const mongoose = require('mongoose');               // requiring mongoose
-
-const todoSchema = new mongoose.Schema({            // creating a new schema
-    description: {
-        type: String,
-        required: true
-    },
-    category:{
-        type: String,
-        required: true
-    },
-    date:{
-        type: String,
-        required: true
-        
-    },
-    priority: {
-        type: String,
-        required: true
-    }
+const mongoose = require('mongoose');
+const todoSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    required: true
+  },
+  priority: {
+    type: String,
+    required: true
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
-const Todo = mongoose.model('Todo', todoSchema);            // storinng the schema in Todo variable
+const Todo = mongoose.model('Todo', todoSchema);
 
-module.exports = Todo;          // exporting the model
+module.exports = Todo;

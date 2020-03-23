@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/sign-in-up.css" />
+  </head>
+  <body>
+    <h1 class="title">A 2Do App</h1>
+    <div class="container">
+      <div class="main">
+        <h1>SIGN UP</h1>
+        <form action="/create-user" method="POST">
+          <div>
+            <input type="text" name="name" required placeholder="Name" />
+            <input type="email" name="email" required placeholder="Email" />
+            <input
+              type="password"
+              name="password"
+              required
+              placeholder="Password"
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              required
+              placeholder="Confirm Password"
+            />
+            <input class="submit" type="submit" />
+          </div>
+        </form>
+      </div>
+      <div class="second">
+        <h3>Already an existing user?</h3>
+        <button class="side-button"><a href="/sign-in">Sign In!</a></button>
+      </div>
+    </div>
+  </body>
+</html>
