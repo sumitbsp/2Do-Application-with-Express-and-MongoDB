@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <title>Sign Up</title>
     <link
       href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap"
@@ -40,5 +45,18 @@
         <button class="side-button"><a href="/sign-in">Sign In!</a></button>
       </div>
     </div>
+
+    <script>
+        <% if (flash.error && flash.error.length > 0) {%>
+          new Noty({
+              theme: 'sunset',
+              text: "<%= flash.error %>",
+              type: 'alert',
+              layout: 'bottomRight',
+              timeout: 2000
+
+          }).show();
+      <%} %>
+    </script>
   </body>
 </html>

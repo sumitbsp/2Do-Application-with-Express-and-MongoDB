@@ -7,7 +7,8 @@ const {
   createTodo,
   deleteTodo,
   userSignUp,
-  updateProfile
+  updateProfile,
+  signIn
 } = require('../controller/index');
 
 router.get('/', passport.checkAuthentication, async function(req, res) {
@@ -41,9 +42,19 @@ router.get('/update-profile', function(req, res) {
   res.render('update-profile');
 });
 
+router.post(
+  '/sign-in',
+  passport.authenticate('local', { failureRedirect: '/sign-in' }),
+  function(req, res) {
+    req.flash('success', 'Logged In!');
+    res.redirect('/');
+  }
+);
+
 router.get('/log-out', function(req, res) {
   req.logOut();
-  res.redirect('/');
+  req.flash('success', 'Logged Out!');
+  res.redirect('/sign-in');
 });
 
 router.get('/delete-todo/:id', deleteTodo);

@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const port = 8000;
+const port = process.env.PORT || 8000;
 const db = require('./config/mongoose');
 const Todo = require('./models/todo');
 const app = express();
@@ -8,6 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const Mongostore = require('connect-mongo')(session);
+const flash = require('connect-flash');
+const mware = require('./config/middleware');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +40,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
+app.use(flash());
+app.use(mware.setFlash);
+
 const User = require('./models/user');
 app.use('/', require('./routes/index'));
 
@@ -45,6 +50,7 @@ app.post(
   '/sign-in',
   passport.authenticate('local', { failureRedirect: '/sign-in' }),
   function(req, res) {
+    req.flash('success', 'Logged In!');
     res.redirect('/');
   }
 );

@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Todo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<!-- 
+    <% if (flash.success && flash.success.length) { %>
+        <h5><%= flash.success %></h5>
+        <% } %> -->
+
     <!-- container for all the elements -->
     <div class="container">
         <h1>A 2Do App</h1>
@@ -99,5 +106,17 @@
     <!-- javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/fontawesome.min.js"></script>
     <script src="js/home.js"></script>
+    <script>
+        <% if (flash.success && flash.success.length > 0) {%>
+            new Noty({
+                theme: 'sunset',
+                text: "<%= flash.success %>",
+                type: 'alert',
+                layout: 'bottomRight',
+                timeout: 1500
+                
+            }).show();    
+        <%} %>
+    </script>
 </body>
 </html>

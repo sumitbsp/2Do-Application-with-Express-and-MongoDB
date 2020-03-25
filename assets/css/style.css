@@ -249,7 +249,8 @@ select {
   height: 70px;
   align-items: center;
   border-radius: 5px;
-  margin-top: 15px;
+  margin-top: 10px;
+  background-color: rgb(236, 236, 236);
 }
 .todo-container a {
   color: #ef5350;

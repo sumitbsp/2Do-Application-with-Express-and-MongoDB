@@ -52,11 +52,12 @@ module.exports = {
             console.log('error');
             return;
           }
-          console.log(user);
+          req.flash('success', 'Welcome! :)');
           return res.redirect('/sign-in');
         }
       );
     } else {
+      req.flash('error', 'Passwords did not match! Try again');
       return res.redirect('back');
     }
   },
@@ -64,6 +65,7 @@ module.exports = {
   async updateProfile(req, res) {
     if (req.body.password === req.body.confirmPassword) {
       let user = await User.findByIdAndUpdate(req.user.id, req.body);
+      req.flash('success', 'Profile Updated!');
       return res.redirect('/');
     }
   }
