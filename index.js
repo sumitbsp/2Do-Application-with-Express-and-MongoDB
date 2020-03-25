@@ -46,15 +46,6 @@ app.use(mware.setFlash);
 const User = require('./models/user');
 app.use('/', require('./routes/index'));
 
-app.post(
-  '/sign-in',
-  passport.authenticate('local', { failureRedirect: '/sign-in' }),
-  function(req, res) {
-    req.flash('success', 'Logged In!');
-    res.redirect('/');
-  }
-);
-
 app.listen(port, function(err) {
   if (err) {
     console.log('something went wrong');
