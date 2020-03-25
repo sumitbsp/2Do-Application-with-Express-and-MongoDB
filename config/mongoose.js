@@ -1,6 +1,8 @@
 const mongoose = require('mongoose'); // requiring mongoose
 
-mongoose.connect('mongodb://localhost/todo_list_db'); // connecting to the db running locally on default port
+mongoose.connect(
+  'mongodb://user:p123456@ds137801.mlab.com:37801/heroku_nrgvlnx5'
+); // connecting to the db running locally on default port
 
 const db = mongoose.connection; // assigning the connection to a variable
 
